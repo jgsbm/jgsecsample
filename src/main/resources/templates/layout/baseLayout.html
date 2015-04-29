@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<!-- HTMLヘッダ -->
+<head th:fragment="htmlhead">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title th:text="${title}">(title)</title>
+
+<!-- CSS -->
+<link href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}"
+	rel="stylesheet" />
+
+<!-- javascripts -->
+<script type="text/javascript" src="/js/jquery-1.11.2.js"
+	th:src="@{/js/jquery-1.11.2.js}"></script>
+<script type="text/javascript" src="/js/bootstrap.js"
+	th:src="@{/js/bootstrap.js}"></script>
+</head>
+
+<body>
+
+	<!-- ナビゲーション・バー -->
+	<div th:fragment="navbar">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">JGS ショッピング</a>
+				</div>
+
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"> カテゴリ <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">人気商品</a></li>
+								<li class="divider"></li>
+								<li><a href="#">メンズ</a></li>
+								<li><a href="#">レディース</a></li>
+							</ul></li>
+							
+						<li><a href="#">会員登録</a></li>
+						<li><a href="#">ログイン</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<!-- フッター -->
+	<div th:fragment="footer">
+		<footer>
+			<p>&copy; JGS 2015</p>
+		</footer>
+	</div>
+
+</body>
+</html>
