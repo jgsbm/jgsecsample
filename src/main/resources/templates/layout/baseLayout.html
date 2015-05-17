@@ -19,6 +19,13 @@
         th:src="@{/webjars/jquery/1.11.2/jquery.min.js}"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"
 		th:src="@{/webjars/bootstrap/3.3.4/js/bootstrap.min.js}"></script>
+
+<!-- style -->
+<style>
+.contents {
+    margin: 50px;
+}
+</style>
 </head>
 
 <body>
@@ -36,10 +43,10 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> カテゴリ <b class="caret"></b></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">人気商品</a></li>
-								<li class="divider"></li>
-								<li><a href="#">メンズ</a></li>
-								<li><a href="#">レディース</a></li>
+								<li><a href="/menu">一覧メニュー</a></li>
+								<li><a href="/detail">詳細</a></li>
+								<li><a href="/member">会員編集</a></li>
+								<li><a href="/register">レジ</a></li>
 							</ul></li>
 
 						<li><a href="#">会員登録</a></li>
@@ -48,6 +55,9 @@
 				</div>
 			</div>
 		</nav>
+	</div>
+	<!-- フッター -->
+	<div th:fragment="contents">
 	</div>
 	<!-- フッター -->
 	<div th:fragment="footer">
