@@ -30,4 +30,14 @@ public class HomeController {
     public String register() {
         return "register";
     }
+    
+    @RequestMapping("/customer")
+    public String customer() {
+        return "customer";
+    }
+    
+    @RequestMapping("/password")
+    public String password() {
+        return "password";
+    }
 }
