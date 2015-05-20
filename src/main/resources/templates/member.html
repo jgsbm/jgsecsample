@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout/baseLayout :: htmlhead"
+	th:with="title='Member'"></head>
+
+<body>
+	<div th:include="layout/baseLayout :: navbar"></div>
+
+	<div class="contents">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="page-header">JGS Shopping Member</h2>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">お客様情報</div>
+				<div class="panel-body">
+
+					<form method="POST" action="/index">
+						<div class="form-horizontal">
+							<div class="form-group">
+								<div class="col-xs-3 text-right">
+									<label for="customer_name">お名前</label>
+								</div>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="customer_name"
+										name="customer_name" placeholder="お名前を入力してください" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-3 text-right">
+									<label for="address">住所</label>
+								</div>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="address"
+										name="address" placeholder="住所を入力してください" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-3 text-right">
+									<label for="tel">電話番号</label>
+								</div>
+								<div class="col-xs-8">
+									<input class="form-control" id="tel" name="tel"
+										placeholder="電話番号を入力してください" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-3 text-right">
+									<label for="email">メールアドレス</label>
+								</div>
+								<div class="col-xs-8">
+									<input class="form-control" id="email" name="email"
+										placeholder="メールアドレスを入力してください" />
+									<p class="help-block">メールアドレスがログインIDになります。</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-offset-3 col-xs-8">
+									<button type="submit" class="btn btn-primary">更新</button>
+									<button type="button" class="btn btn-default">キャンセル</button>
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-4">
+					<br /> <br />
+
+					<div th:include="layout/baseLayout :: footer"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

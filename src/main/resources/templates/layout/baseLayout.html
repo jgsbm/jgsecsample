@@ -15,10 +15,17 @@
 	  th:href="@{/css/jgsecsite.css}" />
 
 <!-- javascripts -->
+<script type="text/javascript" src="http://oss.maxcdn.com/jquery/1.11.2/jquery.min.js"
+        th:src="@{/webjars/jquery/1.11.2/jquery.min.js}"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"
 		th:src="@{/webjars/bootstrap/3.3.4/js/bootstrap.min.js}"></script>
-<script type="text/javascript" src="http://oss.maxcdn.com/jquery/1.11.2/jquery.min.js"
-		th:src="@{/webjars/jquery/1.11.2/jquery.min.js}"></script>
+
+<!-- style -->
+<style>
+.contents {
+    margin: 50px;
+}
+</style>
 </head>
 
 <body>
@@ -28,7 +35,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/}">JGS ショッピング</a>
+					<a class="navbar-brand" th:href="@{/index}">JGS ショッピング</a>
 				</div>
 
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -36,10 +43,10 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> カテゴリ <b class="caret"></b></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">人気商品</a></li>
-								<li class="divider"></li>
-								<li><a href="#">メンズ</a></li>
-								<li><a href="#">レディース</a></li>
+								<li><a th:href="@{/menu}">一覧メニュー</a></li>
+								<li><a th:href="@{/detail}">詳細</a></li>
+								<li><a th:href="@{/customer}">会員編集</a></li>
+								<li><a th:href="@{/register}">レジ</a></li>
 							</ul></li>
 
 						<li><a href="#">会員登録</a></li>
@@ -48,6 +55,9 @@
 				</div>
 			</div>
 		</nav>
+	</div>
+	<!-- フッター -->
+	<div th:fragment="contents">
 	</div>
 	<!-- フッター -->
 	<div th:fragment="footer">
