@@ -20,11 +20,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebMvcSecurity
 public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
     static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
@@ -34,9 +29,9 @@ public class SecurityConfig {
             security.authorizeRequests().antMatchers("/index")
                     .permitAll().anyRequest().authenticated();
 
-            security.formLogin().loginPage("/index").failureUrl("/index?error")
-                    .defaultSuccessUrl("/index", true).usernameParameter("username")
-                    .passwordParameter("password");
+            security.formLogin().loginProcessingUrl("/login").loginPage("/index")
+                    .failureUrl("/index?error").defaultSuccessUrl("/menu", true)
+                    .usernameParameter("email").passwordParameter("password");
 
             security.logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
@@ -54,13 +49,15 @@ public class SecurityConfig {
         @Autowired
         UserDetailsService userDetailService;
 
-        @Autowired
-        PasswordEncoder passwordEncoder;
+        @Bean
+        PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
 
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
             auth.userDetailsService(userDetailService)
-                    .passwordEncoder(passwordEncoder);
+                    .passwordEncoder(passwordEncoder());
         }
     }
 }
