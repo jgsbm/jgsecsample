@@ -28,15 +28,15 @@
 							<th class="col-xs-2"></th>
 						</tr>
 					</thead>
-					<tr>
-						<td>商品ID1</td>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.itemCode}">商品ID1</td>
 						<td>画像1</td>
-						<td>商品名1</td>
-						<td>詳細1</td>
-						<td><a th:href="@{/detail}" class="btn btn-primary btn-lg"><span
+						<td th:text="${product.itemName}">商品名1</td>
+						<td th:text="${product.detail}">詳細1</td>
+						<td><a th:href="@{detail(itemCode=${product.itemCode})}" class="btn btn-primary btn-lg"><span
 								class="glyphicon glyphicon-zoom-in"></span>詳細</a></td>
 					</tr>
-					<tr>
+					<tr th:remove="all">
 						<td>商品ID2</td>
 						<td>画像2</td>
 						<td>商品名2</td>

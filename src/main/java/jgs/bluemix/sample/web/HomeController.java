@@ -11,11 +11,6 @@ public class HomeController {
         return "index";
     }
     
-    @RequestMapping("/menu")
-    public String top() {
-        return "menu";
-    }
-    
     @RequestMapping("/detail")
     public String detail() {
         return "detail";
