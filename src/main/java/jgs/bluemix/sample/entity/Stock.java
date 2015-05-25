@@ -1,7 +1,6 @@
 package jgs.bluemix.sample.entity;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.sql.Blob;
@@ -11,7 +10,8 @@ import java.sql.Blob;
  *
  * @author ryozo
  */
-@Data
+@Setter
+@Getter
 @ToString(exclude = "product")
 public class Stock extends BaseEntity {
     private Integer stock;
