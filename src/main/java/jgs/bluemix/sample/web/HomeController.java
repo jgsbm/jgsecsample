@@ -45,4 +45,9 @@ public class HomeController {
     public String userConfirm() {
         return "userConfirm";
     }
+
+    @RequestMapping("/completion")
+    public String completion() {
+        return "completion";
+    }
 }

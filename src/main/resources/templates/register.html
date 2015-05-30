@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout/baseLayout :: htmlhead" th:with="title='Register'"></head>
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout/baseLayout :: htmlhead"
+	th:with="title='Register'">
+</head>
+
 
 <body>
-<div th:include="layout/baseLayout :: navbar"></div>
+	<script type="text/javascript">
+		function confirmRegister() {
+			if (confirm('購入しますか？')) {
+				document.register.submit();
+			} else {
+				return false;
+			}
+		}
+	</script>
+	<div th:include="layout/baseLayout :: navbar"></div>
 
-<div class="contents">
-<div class="container">
+	<div class="contents">
+		<div class="container">
 
-  <div class="row">
-    <div class="col-lg-12">
-      <h2 class="page-header">JGS Shopping Register
-      </h2>
-    </div>
-  </div>
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="page-header">JGS Shopping Register</h2>
+				</div>
+			</div>
 
-  <div class="row">
-    <div class="col-lg-4">
-        <br />
-        <br />
+			<form method="POST" action="/completion" th:action="@{/completion}"
+				name="register">
+				<div class="panel panel-primary">
+					<div class="panel-heading">商品購入ページ</div>
+					<div class="panel-body">
+						<div class="strong">購入商品</div>
+						<br />
+						<table class="table table-striped table-hover">
+							<tbody>
+								<tr>
+									<td class="col-xs-2">商品ID1</td>
+									<td class="col-xs-2">画像1</td>
+									<td class="col-xs-2">商品名1</td>
+									<td class="col-xs-3">詳細1</td>
+									<td class="col-xs-3">個数：<input type="text" /></td>
+								</tr>
+							</tbody>
+						</table>
+						<br />
+						<div class="strong">発送先</div>
+						<br />
+						<div class="form-group">
+							<div class="radio">
+								<label><input type="radio" name="address" />登録済みの住所に発送する。</label>
+							</div>
+						</div>
+						<br />
+						<div class="row text-center">
+							<button type="button" class="btn btn-primary"
+								onclick="confirmRegister()">購入する</button>
+							<a href="/menu" th:href="@{/menu}" class="btn btn-default">キャンセル</a>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="row">
+				<div class="col-lg-4">
+					<br /> <br />
 
-        <div th:include="layout/baseLayout :: footer"></div>
-    </div>
-  </div>
+					<div th:include="layout/baseLayout :: footer"></div>
+				</div>
+			</div>
 
-</div>
-</div>
+		</div>
+	</div>
 </body>
 </html>
