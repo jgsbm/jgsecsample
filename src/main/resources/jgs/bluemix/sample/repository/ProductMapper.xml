@@ -9,7 +9,6 @@
           product.item_code as product_item_code,
           product.item_name as product_item_name,
           product.price as product_price,
-          product.pic as product_pic,
           product.detail as product_detail,
           product.create_date as product_create_date,
           product.update_date as product_update_date,
@@ -28,18 +27,33 @@
         ORDER BY
           product.item_code ASC
     </select>
+    
+    <select id="findProductPic" resultMap="productPicResultMap">
+        SELECT pic.id, pic.pic, pic.create_date, pic.update_date, pic.version
+        FROM
+          product
+          INNER JOIN product_pic pic on product.id = pic.product_id
+        WHERE product.item_code = #{itemCode}
+    </select>
 
     <resultMap id="productResultMap" type="jgs.bluemix.sample.entity.Product">
         <id property="id" column="product_id" />
         <result property="itemCode" column="product_item_code" />
         <result property="itemName" column="product_item_name" />
         <result property="price" column="product_price" />
-        <result property="pic" column="product_pic" />
         <result property="detail" column="product_detail" />
         <result property="createDate" column="product_create_date" />
         <result property="updateDate" column="product_update_date" />
         <result property="version" column="product_version" />
         <association property="stock" resultMap="stockResultMap" />
+    </resultMap>
+
+    <resultMap id="productPicResultMap" type="jgs.bluemix.sample.entity.ProductPic">
+        <id property="id" column="id" />
+        <result property="pic" column="pic" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="version" column="version" />
     </resultMap>
 
     <resultMap id="stockResultMap" type="jgs.bluemix.sample.entity.Stock">
