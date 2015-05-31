@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.service;
 
 import jgs.bluemix.sample.entity.Product;
+import jgs.bluemix.sample.entity.ProductPic;
 import jgs.bluemix.sample.repository.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,12 @@ public class ProductService {
         return productMapper.findAllStockProducts();
     }
 
+
+    /**
+     * 指定した商品コードを保持する商品の画像を保持する{@link ProductPic}インスタンスを返却します.
+     * @return 商品画像を保持するProductPicインスタンス
+     */
+    public ProductPic findProductPic(String itemCode) {
+        return productMapper.findProductPic(itemCode);
+    }
 }
