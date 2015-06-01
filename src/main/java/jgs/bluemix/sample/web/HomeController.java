@@ -35,4 +35,14 @@ public class HomeController {
     public String password() {
         return "password";
     }
+    
+    @RequestMapping("/userRegister")
+    public String userRegister() {
+        return "userRegister";
+    }
+    
+    @RequestMapping("/userConfirm")
+    public String userConfirm() {
+        return "userConfirm";
+    }
 }
