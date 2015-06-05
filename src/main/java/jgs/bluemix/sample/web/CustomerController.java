@@ -1,5 +1,6 @@
 package jgs.bluemix.sample.web;
 
+import jgs.bluemix.sample.validation.CustomerEmailEqualsValidator;
 import jgs.bluemix.sample.validation.CustomerPasswordEqualsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CustomerController {
 
     @Autowired
+    CustomerEmailEqualsValidator emailValidator;
+
+    @Autowired
     CustomerPasswordEqualsValidator passwordValidator;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        binder.addValidators(emailValidator);
         binder.addValidators(passwordValidator);
     }
 
