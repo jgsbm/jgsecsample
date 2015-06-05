@@ -26,7 +26,7 @@ public class SecurityConfig {
 
         @Override
         protected void configure(HttpSecurity security) throws Exception {
-            security.authorizeRequests().antMatchers("/index", "/userRegister")
+            security.authorizeRequests().antMatchers("/index", "/userRegister", "/userConfirm")
                     .permitAll().anyRequest().authenticated();
 
             security.formLogin().loginProcessingUrl("/login").loginPage("/index")
