@@ -24,14 +24,14 @@
 
 							<form method="POST" action="/userConfirm" th:action="@{/userConfirm}" th:object="${customerForm}">
 								<div class="form-horizontal">
-									<div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error has-feedback'">
+									<div class="form-group" th:classappend="${#fields.hasErrors('customerName')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="customer_name">お名前</label>
 										</div>
 										<div class="col-xs-8">
-											<input type="text" class="form-control" id="customer_name" th:field="*{name}"
+											<input type="text" class="form-control" id="customer_name" th:field="*{customerName}"
 												name="customer_name" placeholder="お名前を入力してください" />
-											<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="help-block">error!</span>
+											<span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="help-block">error!</span>
 										</div>
 									</div>
 									<div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error has-feedback'">

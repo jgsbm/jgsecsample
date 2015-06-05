@@ -1,8 +1,12 @@
 package jgs.bluemix.sample.web;
 
+import jgs.bluemix.sample.entity.Customer;
+import jgs.bluemix.sample.service.CustomerService;
 import jgs.bluemix.sample.validation.CustomerEmailEqualsValidator;
 import jgs.bluemix.sample.validation.CustomerPasswordEqualsValidator;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +30,12 @@ public class CustomerController {
     @Autowired
     CustomerPasswordEqualsValidator passwordValidator;
 
+    @Autowired
+    CustomerService customerService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(emailValidator);
@@ -43,11 +53,27 @@ public class CustomerController {
     }
 
     @RequestMapping("/userConfirm")
-    public String userConfirm(@Validated CustomerForm customer, BindingResult result) {
+    public String userConfirm(@Validated CustomerForm customerForm, BindingResult result) {
         if (result.hasErrors()) {
             return userRegister();
         }
-        return null;
+
+        Customer customer = makeCustomerFromForm(customerForm);
+        customerService.signup(customer);
+
+        return "/userConfirm";
+    }
+
+    /**
+     * 引数に指定された{@link CustomerForm}から{@link Customer}インスタンスを作成します.
+     * @param form 対象のCustomerForm
+     * @return 内容が転記されたCusotmer
+     */
+    private Customer makeCustomerFromForm(CustomerForm form) {
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(form, customer);
+        customer.setHashedPassword(passwordEncoder.encode(form.getPassword()));
+        return customer;
     }
 
 }
