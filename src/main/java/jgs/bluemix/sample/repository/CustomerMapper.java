@@ -15,4 +15,10 @@ public interface CustomerMapper {
      * @return 検索結果
      */
     Customer findCustomerByMail(String email);
+
+    /**
+     * 引数に指定されたユーザを追加します.
+     * @param customer 追加対象ユーザ
+     */
+    void insertCustomer(Customer customer);
 }
