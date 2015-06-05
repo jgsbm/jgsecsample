@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
- * Emailと確認用Emailの比較チェックを行うためのValidatoです.
+ * Emailと確認用Emailの比較チェックを行うためのValidatorです.
  *
  * @author ryozo
  */
