@@ -17,75 +17,83 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-7">
+					<div th:include="layout/baseLayout :: messageArea"></div>
 					<div class="panel panel-primary">
 						<div class="panel-heading">会員登録</div>
 						<div class="panel-body">
 
-							<form method="POST" action="/userConfirm" th:action="@{/userConfirm}">
+							<form method="POST" action="/userConfirm" th:action="@{/userConfirm}" th:object="${customerForm}">
 								<div class="form-horizontal">
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('customerName')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="customer_name">お名前</label>
 										</div>
 										<div class="col-xs-8">
-											<input type="text" class="form-control" id="customer_name"
+											<input type="text" class="form-control" id="customer_name" th:field="*{customerName}"
 												name="customer_name" placeholder="お名前を入力してください" />
+											<span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="help-block">error!</span>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="address">住所</label>
 										</div>
 										<div class="col-xs-8">
-											<input type="text" class="form-control" id="address"
+											<input type="text" class="form-control" id="address" th:field="*{address}"
 												name="address" placeholder="住所を入力してください" />
+                        					<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="help-block">error!</span>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('tel')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="tel">電話番号</label>
 										</div>
 										<div class="col-xs-8">
-											<input class="form-control" id="tel" name="tel"
+											<input class="form-control" id="tel" name="tel" th:field="*{tel}"
 												placeholder="電話番号を入力してください" />
+											<span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}" class="help-block">error!</span>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="email">メールアドレス</label>
 										</div>
 										<div class="col-xs-8">
-											<input class="form-control" id="email" name="email"
+											<input class="form-control" id="email" name="email" th:field="*{email}"
 												placeholder="メールアドレスを入力してください" />
+											<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help-block">error!</span>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="email_confirm">メールアドレス(確認)</label>
 										</div>
 										<div class="col-xs-8">
-											<input class="form-control" id="email_confirm"
+											<input class="form-control" id="email_confirm" th:field="*{confirmEmail}"
 												name="email_confirm" placeholder="メールアドレスを入力してください" />
+											<span th:if="${#fields.hasErrors('confirmEmail')}" th:errors="*{confirmEmail}" class="help-block">error!</span>
 											<p class="help-block">メールアドレスがログインIDになります。</p>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="password">パスワード</label>
 										</div>
 										<div class="col-xs-8">
-											<input class="form-control" id="password" name="password"
+											<input type="password" class="form-control" id="password" name="password" th:field="*{password}"
 												placeholder="パスワードを入力してください" />
+											<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help-block">error!</span>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error has-feedback'">
 										<div class="col-xs-3 text-right">
 											<label for="password_confirm">パスワード(確認)</label>
 										</div>
 										<div class="col-xs-8">
-											<input class="form-control" id="password_confirm"
+											<input type="password" class="form-control" id="password_confirm" th:field="*{confirmPassword}"
 												name="password_confirm" placeholder="パスワードを入力してください" />
+											<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="help-block">error!</span>
 										</div>
 									</div>
 									<br /><br />

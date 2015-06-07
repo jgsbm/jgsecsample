@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:include="layout/baseLayout :: htmlhead" th:with="title='JGS ショッピング'"></head>
 
 <body>
@@ -20,6 +21,9 @@
     <div class="col-lg-4">
         <div>
             <form id="form" class="form-horizontal" method="post" th:action="@{/login}">
+                <div th:if="${param.registUser}" class="alert alert-success">
+                    会員登録に成功しました。ログインしてください。
+                </div>
                 <div th:if="${param.error}" class="alert alert-danger">
                     ユーザ名またはパスワードが正しくありません。
                 </div>

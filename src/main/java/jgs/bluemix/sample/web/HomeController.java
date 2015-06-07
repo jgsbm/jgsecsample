@@ -25,25 +25,15 @@ public class HomeController {
     public String register() {
         return "register";
     }
-    
+
     @RequestMapping("/customer")
     public String customer() {
         return "customer";
     }
-    
+
     @RequestMapping("/password")
     public String password() {
         return "password";
-    }
-    
-    @RequestMapping("/userRegister")
-    public String userRegister() {
-        return "userRegister";
-    }
-    
-    @RequestMapping("/userConfirm")
-    public String userConfirm() {
-        return "userConfirm";
     }
 
     @RequestMapping("/completion")

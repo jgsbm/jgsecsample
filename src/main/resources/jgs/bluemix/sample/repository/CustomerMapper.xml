@@ -22,4 +22,26 @@
           email = #{email}
     </select>
 
+    <insert id="insertCustomer" parameterType="jgs.bluemix.sample.entity.Customer" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO customer (
+          customer_name,
+          address,
+          tel,
+          hashed_password,
+          email,
+          create_date,
+          update_date,
+          version)
+        VALUES (
+          #{customerName},
+          #{address},
+          #{tel},
+          #{hashedPassword},
+          #{email},
+          current_timestamp(),
+          current_timestamp(),
+          1
+        )
+    </insert>
+
 </mapper>
