@@ -58,6 +58,15 @@
 			</div>
 		</nav>
 	</div>
+	<!-- メッセージエリア -->
+	<div th:fragment="messageArea">
+		<div th:if="${hasInfoMessage}" class="alert alert-success fade in">
+			<span th:text="${infoMessage}">InfoMessage</span>
+		</div>
+		<div th:if="${hasErrorMessage}" class="alert alert-danger fade in">
+			<span th:text="${errorMessage}">ErrorMessage</span>
+		</div>
+	</div>
 	<!-- フッター -->
 	<div th:fragment="contents">
 	</div>
