@@ -2,6 +2,7 @@ package jgs.bluemix.sample.web;
 
 import jgs.bluemix.sample.entity.Customer;
 import jgs.bluemix.sample.exception.BusinessException;
+import jgs.bluemix.sample.message.MessageCodeEnum;
 import jgs.bluemix.sample.service.CustomerService;
 import jgs.bluemix.sample.validation.CustomerEmailEqualsValidator;
 import jgs.bluemix.sample.validation.CustomerPasswordEqualsValidator;
@@ -78,7 +79,8 @@ public class CustomerController {
             return userRegister();
         }
 
-        return "/userConfirm";
+        // TODO ログイン済の状態でmenuに飛ばす(SpringSecurityでログイン済状態にする)
+        return "redirect:/index?registUser";
     }
 
     /**
