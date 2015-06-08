@@ -2,6 +2,8 @@ package jgs.bluemix.sample.service;
 
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.entity.ProductPic;
+import jgs.bluemix.sample.exception.OutOfStockException;
+import jgs.bluemix.sample.exception.ProductNotFoundException;
 import jgs.bluemix.sample.repository.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,23 @@ public class ProductService {
         return productMapper.findAllStockProducts();
     }
 
+    /**
+     * 引数に指定されたItemCodeを保持する商品を検索します.
+     * 対象商品の在庫が存在しない場合{@link OutOfStockException}をthrowします.
+     * @param itemCode 検索対象のItemCode
+     * @return 検索結果
+     */
+    public Product findProductByItemCode(String itemCode) {
+        Product product = productMapper.findProductByItemCode(itemCode);
+        if (product == null) {
+            throw new ProductNotFoundException();
+        }
+        if (!isStock(product)) {
+            throw new OutOfStockException();
+        }
+
+        return product;
+    }
 
     /**
      * 指定した商品コードを保持する商品の画像を保持する{@link ProductPic}インスタンスを返却します.
@@ -34,5 +53,12 @@ public class ProductService {
      */
     public ProductPic findProductPic(String itemCode) {
         return productMapper.findProductPic(itemCode);
+    }
+
+    /**
+     * 在庫品であるか判定します.
+     */
+    private boolean isStock(Product product) {
+        return product.getStock().getStock() > 0;
     }
 }
