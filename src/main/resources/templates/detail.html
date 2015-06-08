@@ -16,9 +16,13 @@
 			</div>
 			<div class="col-xs-12">
 				<form method="POST" action="/register" th:action="@{/register}">
-					<div class="col-xs-5">画像表示領域</div>
+					<div class="col-xs-5">
+						<span th:remove="all">画像表示領域</span>
+						<img src="../img/ITEM000001.jpg" width="150" height="150" th:attr="src=@{/resource/product/{itemCode}.jpg(itemCode=${product.itemCode})}" th:width="150px" th:height="150px" alt="" />
+					</div>
 					<div class="col-xs-7 well">
-						商品詳細<br /> <br /> <br /> <br /> <br /> <br /> <br />
+						<span th:text="${product.detail}">商品詳細<br /> <br /> <br /> <br /> <br /> <br /> <br /></span>
+						<input type="hidden" name="itemCode" th:value="${product.itemCode}"/>
 						<button type="submit" class="btn btn-primary">
 							<div class="glyphicon glyphicon-shopping-cart"></div>
 							レジ

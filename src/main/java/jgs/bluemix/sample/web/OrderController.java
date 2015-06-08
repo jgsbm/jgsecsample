@@ -27,7 +27,10 @@ public class OrderController {
     }
 
     @RequestMapping("/register")
-    public String register() {
+    public String register(@RequestParam(value = "itemCode") String itemCode, Model model) {
+        // Modelの情報を再取得してレジ画面を表示する
+        Product product = productService.findProductByItemCode(itemCode);
+        model.addAttribute("product", product);
         return "register";
     }
 }
