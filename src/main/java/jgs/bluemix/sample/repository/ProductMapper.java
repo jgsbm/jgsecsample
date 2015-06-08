@@ -19,6 +19,13 @@ public interface ProductMapper {
     List<Product> findAllStockProducts();
 
     /**
+     * 指定されたItemCodeを保持する商品を検索します.
+     * @param itemCode 検索条件とするItemCode
+     * @return 検索結果
+     */
+    Product findProductByItemCode(String itemCode);
+
+    /**
      * 指定された商品コード(ItemCode)を保持する商品の画像(PIC)を保持する{@link ProductPic}インスタンスを返却します.
      *
      * @param itemCode 検索対象商品の商品コード

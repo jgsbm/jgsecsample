@@ -3,22 +3,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jgs.bluemix.sample.repository.ProductMapper">
 
+    <sql id="productColumns">
+        product.id as product_id,
+        product.item_code as product_item_code,
+        product.item_name as product_item_name,
+        product.price as product_price,
+        product.detail as product_detail,
+        product.create_date as product_create_date,
+        product.update_date as product_update_date,
+        product.version as product_version
+    </sql>
+    <sql id="stockColumns">
+        stock.id as stock_id,
+        stock.stock as stock_stock,
+        stock.product_id as stock_product_id,
+        stock.create_date as stock_create_date,
+        stock.update_date as stock_update_date,
+        stock.version as stock_version
+    </sql>
+
     <select id="findAllStockProducts" resultMap="productResultMap">
         SELECT
-          product.id as product_id,
-          product.item_code as product_item_code,
-          product.item_name as product_item_name,
-          product.price as product_price,
-          product.detail as product_detail,
-          product.create_date as product_create_date,
-          product.update_date as product_update_date,
-          product.version as product_version,
-          stock.id as stock_id,
-          stock.stock as stock_stock,
-          stock.product_id as stock_product_id,
-          stock.create_date as stock_create_date,
-          stock.update_date as stock_update_date,
-          stock.version as stock_version
+          <include refid="productColumns"></include>,
+          <include refid="stockColumns"></include>
         FROM
           product
           INNER JOIN stock ON product.id = stock.product_id
@@ -26,6 +33,17 @@
           stock.stock > 0
         ORDER BY
           product.item_code ASC
+    </select>
+
+    <select id="findProductByItemCode" resultMap="productResultMap">
+        SELECT
+          <include refid="productColumns"></include>,
+          <include refid="stockColumns"></include>
+        FROM
+          product
+          INNER JOIN stock ON product.id = stock.product_id
+        WHERE
+          product.item_code = #{itemCode}
     </select>
     
     <select id="findProductPic" resultMap="productPicResultMap">
