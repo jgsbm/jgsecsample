@@ -11,21 +11,11 @@ public class HomeController {
         return "index";
     }
     
-    @RequestMapping("/detail")
-    public String detail() {
-        return "detail";
-    }
-    
     @RequestMapping("/member")
     public String member() {
         return "member";
     }
     
-    @RequestMapping("/register")
-    public String register() {
-        return "register";
-    }
-
     @RequestMapping("/customer")
     public String customer() {
         return "customer";
