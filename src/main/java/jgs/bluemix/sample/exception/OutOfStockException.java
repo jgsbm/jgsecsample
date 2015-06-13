@@ -1,6 +1,6 @@
 package jgs.bluemix.sample.exception;
 
-import jgs.bluemix.sample.message.MessageCodeEnum;
+import jgs.bluemix.sample.message.BusinessMessageCodeEnum;
 import lombok.Getter;
 
 /**
@@ -23,7 +23,7 @@ public class OutOfStockException extends BusinessException {
     }
 
     public OutOfStockException(String itemCode, Throwable cause) {
-        super(MessageCodeEnum.ERROR_OUTOFSTOCK, cause);
+        super(BusinessMessageCodeEnum.ERROR_OUTOFSTOCK, cause);
         this.itemCode = itemCode;
     }
 }

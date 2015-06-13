@@ -1,6 +1,6 @@
 package jgs.bluemix.sample.exception;
 
-import jgs.bluemix.sample.message.MessageCodeEnum;
+import jgs.bluemix.sample.message.BusinessMessageCodeEnum;
 
 /**
  * 商品が存在しないことによって何らかの業務操作が実施できない場合に発生する復帰不能例外です.
@@ -16,6 +16,6 @@ public class ProductNotFoundException extends SystemException {
     }
 
     public ProductNotFoundException(Throwable cause) {
-        super(MessageCodeEnum.ERROR_OUTOFSTOCK, cause);
+        super(BusinessMessageCodeEnum.ERROR_OUTOFSTOCK, cause);
     }
 }
