@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.exception;
 
-import jgs.bluemix.sample.message.MessageCodeEnum;
+import jgs.bluemix.sample.message.SysErrorMessageCodeEnum;
+import lombok.Getter;
 
 /**
  * ユーザ操作によって復帰不可能な業務例外を表すExceptionクラスです.
@@ -9,16 +10,19 @@ import jgs.bluemix.sample.message.MessageCodeEnum;
  *
  * @author ryozo
  */
+@Getter
 public class SystemException extends RuntimeException {
-    private static final long serialVersionUID = -6389577463585579568L;
-    private MessageCodeEnum messageCode;
 
-    public SystemException(MessageCodeEnum messageCode) {
-        this(messageCode, null);
+    private static final long serialVersionUID = -4311304804948825917L;
+    
+    private SysErrorMessageCodeEnum errorCode;
+
+    public SystemException(SysErrorMessageCodeEnum errorCode) {
+        this(errorCode, null);
     }
 
-    public SystemException(MessageCodeEnum messageCode, Throwable cause) {
+    public SystemException(SysErrorMessageCodeEnum errorCode, Throwable cause) {
         super(cause);
-        this.messageCode = messageCode;
+        this.errorCode = errorCode;
     }
 }

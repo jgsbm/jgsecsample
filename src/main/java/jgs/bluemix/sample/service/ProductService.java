@@ -3,7 +3,7 @@ package jgs.bluemix.sample.service;
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.entity.ProductPic;
 import jgs.bluemix.sample.exception.OutOfStockException;
-import jgs.bluemix.sample.exception.ProductNotFoundException;
+import jgs.bluemix.sample.exception.ProductNotExistsException;
 import jgs.bluemix.sample.repository.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class ProductService {
     public Product findStockProductByItemCode(String itemCode) {
         Product product = productMapper.findProductByItemCode(itemCode);
         if (product == null) {
-            throw new ProductNotFoundException();
+            throw new ProductNotExistsException();
         }
         if (!isStock(product)) {
             throw new OutOfStockException(itemCode);
@@ -55,7 +55,7 @@ public class ProductService {
     public Product findProductByItemCode(String itemCode) {
         Product product = productMapper.findProductByItemCode(itemCode);
         if (product == null) {
-            throw new ProductNotFoundException();
+            throw new ProductNotExistsException();
         }
         return product;
     }
