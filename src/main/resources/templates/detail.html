@@ -15,6 +15,7 @@
 				</div>
 			</div>
 			<div class="col-xs-12">
+				<div th:include="layout/baseLayout :: messageArea"></div>
 				<form method="POST" action="/register" th:action="@{/register}">
 					<div class="col-xs-5">
 						<span th:remove="all">画像表示領域</span>

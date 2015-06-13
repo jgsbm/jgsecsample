@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.exception;
 
 import jgs.bluemix.sample.message.MessageCodeEnum;
+import lombok.Getter;
 
 /**
  * 商品の在庫が無いことに起因して、何らかの操作が実施できない場合に発生する業務例外です.
@@ -14,11 +15,15 @@ import jgs.bluemix.sample.message.MessageCodeEnum;
 public class OutOfStockException extends BusinessException {
     private static final long serialVersionUID = -3193112286387806500L;
 
-    public OutOfStockException() {
-        this(null);
+    @Getter
+    private String itemCode;
+
+    public OutOfStockException(String itemCode) {
+        this(itemCode, null);
     }
 
-    public OutOfStockException(Throwable cause) {
+    public OutOfStockException(String itemCode, Throwable cause) {
         super(MessageCodeEnum.ERROR_OUTOFSTOCK, cause);
+        this.itemCode = itemCode;
     }
 }

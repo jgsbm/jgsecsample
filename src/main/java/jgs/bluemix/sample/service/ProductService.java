@@ -30,8 +30,25 @@ public class ProductService {
     }
 
     /**
-     * 引数に指定されたItemCodeを保持する商品を検索します.
+     * 引数に指定されたItemCodeを保持する在庫品を検索します.
      * 対象商品の在庫が存在しない場合{@link OutOfStockException}をthrowします.
+     * @param itemCode 検索対象のItemCode
+     * @return 検索結果
+     */
+    public Product findStockProductByItemCode(String itemCode) {
+        Product product = productMapper.findProductByItemCode(itemCode);
+        if (product == null) {
+            throw new ProductNotFoundException();
+        }
+        if (!isStock(product)) {
+            throw new OutOfStockException(itemCode);
+        }
+
+        return product;
+    }
+
+    /**
+     * 引数に指定されたItemCodを保持する商品を検索します(在庫品であるか在庫切れ品であるかを判定しません).
      * @param itemCode 検索対象のItemCode
      * @return 検索結果
      */
@@ -40,10 +57,6 @@ public class ProductService {
         if (product == null) {
             throw new ProductNotFoundException();
         }
-        if (!isStock(product)) {
-            throw new OutOfStockException();
-        }
-
         return product;
     }
 
