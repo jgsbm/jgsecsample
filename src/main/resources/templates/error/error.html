@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Error!</h1>
+
+<div>
+    <hr />
+    <div>
+        Failed URL: <span th:text="${url}">error url</span>
+    </div>
+    <hr />
+    <div>
+        Message: <span th:text="${message}">errormessage</span>
+    </div>
+    <hr />
+    <div>
+    Exception:<br/>
+        <span th:each="stackTrace : ${exception.stackTrace}">
+            <span th:text="${stackTrace}"/><br/>
+        </span>
+    </div>
+</div>
+</body>
+</html>
