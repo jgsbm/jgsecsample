@@ -41,4 +41,8 @@ public class CustomerForm {
 
     @NotBlank
     private String confirmPassword;
+    
+    @NotBlank
+    @Size(min = 14, max = 16)
+    private String creditno;
 }
