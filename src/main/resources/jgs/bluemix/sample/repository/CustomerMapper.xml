@@ -44,4 +44,20 @@
         )
     </insert>
 
+    <insert id="insertCreditCard" parameterType="jgs.bluemix.sample.entity.CreditCard" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO creditcard (
+          creditno,
+          customer_id,
+          create_date,
+          update_date,
+          version)
+        VALUES (
+          #{creditno},
+          #{customer.id},
+          current_timestamp(),
+          current_timestamp(),
+          1
+        )
+    </insert>
+
 </mapper>
