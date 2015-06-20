@@ -1,14 +1,15 @@
 package jgs.bluemix.sample.web;
 
+import jgs.bluemix.sample.entity.CreditCard;
 import jgs.bluemix.sample.entity.Customer;
 import jgs.bluemix.sample.exception.BusinessException;
-import jgs.bluemix.sample.message.MessageCodeEnum;
 import jgs.bluemix.sample.service.CustomerService;
 import jgs.bluemix.sample.validation.CustomerEmailEqualsValidator;
 import jgs.bluemix.sample.validation.CustomerPasswordEqualsValidator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,9 @@ public class CustomerController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    TextEncryptor textEncryptor;
 
     @Autowired
     MessageSource messageSource;
@@ -90,8 +94,19 @@ public class CustomerController {
      */
     private Customer makeCustomerFromForm(CustomerForm form) {
         Customer customer = new Customer();
+        CreditCard creditCard = new CreditCard();
+        // フォームからのフィールドコピー
         BeanUtils.copyProperties(form, customer);
+        BeanUtils.copyProperties(form, creditCard);
+
+        // 参照の設定
+        customer.setCreditCard(creditCard);
+        creditCard.setCustomer(customer);
+
+        // パスワードハッシュ化
         customer.setHashedPassword(passwordEncoder.encode(form.getPassword()));
+        // クレジットカード番号の暗号化
+        creditCard.setEncryptedCreditno(textEncryptor.encrypt(form.getCreditno()));
         return customer;
     }
 

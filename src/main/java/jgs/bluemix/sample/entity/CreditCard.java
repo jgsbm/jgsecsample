@@ -9,6 +9,6 @@ import lombok.Data;
  */
 @Data
 public class CreditCard extends BaseEntity {
-    private String creditno;
+    private String encryptedCreditno;
     private Customer customer;
 }

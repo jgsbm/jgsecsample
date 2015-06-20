@@ -46,13 +46,13 @@
 
     <insert id="insertCreditCard" parameterType="jgs.bluemix.sample.entity.CreditCard" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO creditcard (
-          creditno,
+          encrypted_creditno,
           customer_id,
           create_date,
           update_date,
           version)
         VALUES (
-          #{creditno},
+          #{encryptedCreditno},
           #{customer.id},
           current_timestamp(),
           current_timestamp(),
