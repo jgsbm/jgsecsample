@@ -26,8 +26,4 @@ public class HomeController {
         return "password";
     }
 
-    @RequestMapping("/completion")
-    public String completion() {
-        return "completion";
-    }
 }
