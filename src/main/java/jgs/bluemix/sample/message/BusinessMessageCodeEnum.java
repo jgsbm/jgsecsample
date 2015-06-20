@@ -9,6 +9,8 @@ import lombok.Getter;
  */
 @Getter
 public enum BusinessMessageCodeEnum {
+    // INFOメッセージ
+    INFO_ORDER_SUCCESS           ("info.business.orderSuccess"),
     // ERRORメッセージ
     ERROR_ALREADY_USER_REGISTED  ("error.business.alreadyUserRegisted"),
     ERROR_OUTOFSTOCK             ("error.business.outOfStock");

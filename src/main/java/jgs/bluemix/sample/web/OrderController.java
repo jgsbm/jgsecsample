@@ -2,6 +2,7 @@ package jgs.bluemix.sample.web;
 
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.exception.OutOfStockException;
+import jgs.bluemix.sample.message.BusinessMessageCodeEnum;
 import jgs.bluemix.sample.service.OrderService;
 import jgs.bluemix.sample.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Locale;
 
@@ -57,9 +59,12 @@ public class OrderController {
     }
 
     @RequestMapping("/completion")
-    public String completion(@Validated OrderForm form, @RequestParam(value = "itemCode") String itemCode) {
+    public String completion(@Validated OrderForm form, @RequestParam(value = "itemCode") String itemCode,
+                             UriComponentsBuilder uriBuilder) {
         orderService.order(itemCode, form.getQuantity());
-        return "completion";
+        uriBuilder.path("/menu");
+        uriBuilder.queryParam("orderedCode", itemCode);
+        return "redirect:" + uriBuilder.build().toUriString();
     }
 
     @ExceptionHandler(OutOfStockException.class)
