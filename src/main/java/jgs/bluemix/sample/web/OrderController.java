@@ -2,6 +2,7 @@ package jgs.bluemix.sample.web;
 
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.exception.OutOfStockException;
+import jgs.bluemix.sample.service.OrderService;
 import jgs.bluemix.sample.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -26,6 +27,9 @@ public class OrderController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    OrderService orderService;
 
     @Autowired
     MessageSource messageSource;
@@ -54,6 +58,7 @@ public class OrderController {
 
     @RequestMapping("/completion")
     public String completion(@Validated OrderForm form, @RequestParam(value = "itemCode") String itemCode) {
+        orderService.order(itemCode, form.getQuantity());
         return "completion";
     }
 
