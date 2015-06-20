@@ -2,6 +2,7 @@ package jgs.bluemix.sample.repository;
 
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.entity.ProductPic;
+import jgs.bluemix.sample.entity.Stock;
 
 import java.util.List;
 
@@ -32,5 +33,20 @@ public interface ProductMapper {
      * @return 商品画像を保持するProductPicインスタンス
      */
     ProductPic findProductPic(String itemCode);
+
+    /**
+     * 指定されたStockがDB上存在するか判定します.
+     * @param stock
+     * @return
+     */
+    boolean isExistStock(Stock stock);
+
+    /**
+     * 指定されたStockをUpdateします.
+     * DB上のVersion列と引数のStockインスタンスのVersion列が一致している場合のみ更新が行われます.
+     * @param stock 更新対象のStock
+     * @return 更新件数
+     */
+    int versionConditionalStockUpdate(Stock stock);
 
 }

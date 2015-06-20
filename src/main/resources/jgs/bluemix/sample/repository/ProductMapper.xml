@@ -54,6 +54,26 @@
         WHERE product.item_code = #{itemCode}
     </select>
 
+    <select id="isExistStock" resultType="boolean" parameterType="jgs.bluemix.sample.entity.Stock">
+        SELECT
+          CASE count(1) WHEN 0 THEN 'false' ELSE 'true' END
+        FROM
+          stock
+        WHERE
+          id = #{id}
+    </select>
+
+    <update id="versionConditionalStockUpdate" parameterType="jgs.bluemix.sample.entity.Stock" flushCache="true">
+        UPDATE stock
+        SET
+          stock = #{stock},
+          update_date = current_timestamp(),
+          version = version + 1
+        WHERE
+          id = #{id}
+          AND version = #{version}
+    </update>
+
     <resultMap id="productResultMap" type="jgs.bluemix.sample.entity.Product">
         <id property="id" column="product_id" />
         <result property="itemCode" column="product_item_code" />
