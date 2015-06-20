@@ -1,5 +1,6 @@
 package jgs.bluemix.sample.repository;
 
+import jgs.bluemix.sample.entity.CreditCard;
 import jgs.bluemix.sample.entity.Customer;
 
 /**
@@ -21,4 +22,10 @@ public interface CustomerMapper {
      * @param customer 追加対象ユーザ
      */
     void insertCustomer(Customer customer);
+
+    /**
+     * 引数に指定されたクレジットカードを追加します.
+     * @param creditCard 追加対象クレジットカード情報
+     */
+    void insertCreditCard(CreditCard creditCard);
 }

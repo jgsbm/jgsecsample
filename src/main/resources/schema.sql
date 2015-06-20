@@ -11,6 +11,16 @@ CREATE TABLE customer(
   version BIGINT NOT NULL
 );
 
+--create creditcards
+CREATE TABLE creditcard(
+  id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  encrypted_creditno VARCHAR(96) NOT NULL,
+  customer_id BIGINT NOT NULL,
+  create_date TIMESTAMP NOT NULL,
+  update_date TIMESTAMP NOT NULL,
+  version BIGINT NOT NULL
+);
+
 --create product table
 CREATE TABLE product(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,

@@ -15,4 +15,5 @@ public class Customer extends BaseEntity {
     private String tel;
     private String hashedPassword;
     private String email;
+    private CreditCard creditCard;
 }

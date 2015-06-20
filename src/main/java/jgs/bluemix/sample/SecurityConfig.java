@@ -1,10 +1,14 @@
 package jgs.bluemix.sample;
 
+import jgs.bluemix.sample.crypto.HexEncodingTextEncryptor;
+import jgs.bluemix.sample.crypto.LesserAesBytesEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,12 +17,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.encrypt.BytesEncryptor;
+import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebMvcSecurity
+@PropertySource("classpath:ecsecurity.properties")
 public class SecurityConfig {
+
+    @Autowired
+    Environment environment;
 
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
@@ -59,5 +70,16 @@ public class SecurityConfig {
             auth.userDetailsService(userDetailService)
                     .passwordEncoder(passwordEncoder());
         }
+    }
+    /**
+     * 文字列用途のEncryptorを生成します.
+     * @return
+     */
+    @Bean
+    public TextEncryptor textEncryptor() {
+        BytesEncryptor bytesEncryptor = new LesserAesBytesEncryptor(
+                environment.getProperty("ecsecurity.pass"),
+                environment.getProperty("ecsecurity.salt"));
+        return new HexEncodingTextEncryptor(bytesEncryptor);
     }
 }

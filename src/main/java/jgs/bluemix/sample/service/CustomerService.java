@@ -29,6 +29,7 @@ public class CustomerService {
     public Customer signup(Customer customer) {
         try {
             customerMapper.insertCustomer(customer);
+            customerMapper.insertCreditCard(customer.getCreditCard());
         } catch (DuplicateKeyException e) {
             // UserIDの重複(既に登録済のユーザ)
             // TODO AOPによるログ出力
