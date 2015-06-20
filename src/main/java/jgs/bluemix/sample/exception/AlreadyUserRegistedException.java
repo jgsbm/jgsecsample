@@ -1,6 +1,6 @@
 package jgs.bluemix.sample.exception;
 
-import jgs.bluemix.sample.message.MessageCodeEnum;
+import jgs.bluemix.sample.message.BusinessMessageCodeEnum;
 
 /**
  * 既にユーザが登録済である事を表す業務例外です.
@@ -15,6 +15,6 @@ public class AlreadyUserRegistedException extends BusinessException {
     }
 
     public AlreadyUserRegistedException(Throwable cause) {
-        super(MessageCodeEnum.ERROR_ALREADY_USER_REGISTED, cause);
+        super(BusinessMessageCodeEnum.ERROR_ALREADY_USER_REGISTED, cause);
     }
 }
