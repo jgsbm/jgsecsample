@@ -2,7 +2,7 @@ package jgs.bluemix.sample.service;
 
 import jgs.bluemix.sample.entity.Customer;
 import jgs.bluemix.sample.exception.AlreadyUserRegistedException;
-import jgs.bluemix.sample.repository.CustomerMapper;
+import jgs.bluemix.sample.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerService {
 
     @Autowired
-    CustomerMapper customerMapper;
+    CustomerRepository customerRepository;
 
     /**
      * 引数のユーザを新規顧客として登録します.
@@ -28,8 +28,8 @@ public class CustomerService {
     @Transactional
     public Customer signup(Customer customer) {
         try {
-            customerMapper.insertCustomer(customer);
-            customerMapper.insertCreditCard(customer.getCreditCard());
+            customerRepository.insertCustomer(customer);
+            customerRepository.insertCreditCard(customer.getCreditCard());
         } catch (DuplicateKeyException e) {
             // UserIDの重複(既に登録済のユーザ)
             // TODO AOPによるログ出力

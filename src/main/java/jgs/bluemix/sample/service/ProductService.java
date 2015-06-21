@@ -4,7 +4,7 @@ import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.entity.ProductPic;
 import jgs.bluemix.sample.exception.OutOfStockException;
 import jgs.bluemix.sample.exception.ProductNotExistsException;
-import jgs.bluemix.sample.repository.ProductMapper;
+import jgs.bluemix.sample.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +19,14 @@ import java.util.List;
 public class ProductService {
 
     @Autowired
-    ProductMapper productMapper;
+    ProductRepository productRepository;
 
     /**
      * 全ての在庫品を検索します。
      * @return 在庫が1件以上存在する製品の一覧
      */
     public List<Product> findAllStockProducts() {
-        return productMapper.findAllStockProducts();
+        return productRepository.findAllStockProducts();
     }
 
     /**
@@ -36,7 +36,7 @@ public class ProductService {
      * @return 検索結果
      */
     public Product findStockProductByItemCode(String itemCode) {
-        Product product = productMapper.findProductByItemCode(itemCode);
+        Product product = productRepository.findProductByItemCode(itemCode);
         if (product == null) {
             throw new ProductNotExistsException();
         }
@@ -53,7 +53,7 @@ public class ProductService {
      * @return 検索結果
      */
     public Product findProductByItemCode(String itemCode) {
-        Product product = productMapper.findProductByItemCode(itemCode);
+        Product product = productRepository.findProductByItemCode(itemCode);
         if (product == null) {
             throw new ProductNotExistsException();
         }
@@ -65,7 +65,7 @@ public class ProductService {
      * @return 商品画像を保持するProductPicインスタンス
      */
     public ProductPic findProductPic(String itemCode) {
-        return productMapper.findProductPic(itemCode);
+        return productRepository.findProductPic(itemCode);
     }
 
     /**
