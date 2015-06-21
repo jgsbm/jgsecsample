@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * ログインユーザ情報を取得するためのServiceクラスです.
- * 当クラスはSpring-Securityによってログインユーザの取得servicとして利用されます.
+ * 当クラスはSpring-Securityによってログインユーザの取得用serviceとして利用されます.
  */
 @Service
 public class LoginUserDetailService implements UserDetailsService {
