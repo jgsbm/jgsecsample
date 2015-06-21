@@ -4,22 +4,22 @@
 <mapper namespace="jgs.bluemix.sample.persistence.ProductMapper">
 
     <sql id="productColumns">
-        product.id as product_id,
-        product.item_code as product_item_code,
-        product.item_name as product_item_name,
-        product.price as product_price,
-        product.detail as product_detail,
-        product.create_date as product_create_date,
-        product.update_date as product_update_date,
-        product.version as product_version
+        products.id as product_id,
+        products.item_code as product_item_code,
+        products.item_name as product_item_name,
+        products.price as product_price,
+        products.detail as product_detail,
+        products.create_date as product_create_date,
+        products.update_date as product_update_date,
+        products.version as product_version
     </sql>
     <sql id="stockColumns">
-        stock.id as stock_id,
-        stock.stock as stock_stock,
-        stock.product_id as stock_product_id,
-        stock.create_date as stock_create_date,
-        stock.update_date as stock_update_date,
-        stock.version as stock_version
+        stocks.id as stock_id,
+        stocks.stock as stock_stock,
+        stocks.product_id as stock_product_id,
+        stocks.create_date as stock_create_date,
+        stocks.update_date as stock_update_date,
+        stocks.version as stock_version
     </sql>
 
     <select id="findAllStockProducts" resultMap="productResultMap">
@@ -27,12 +27,12 @@
           <include refid="productColumns"></include>,
           <include refid="stockColumns"></include>
         FROM
-          product
-          INNER JOIN stock ON product.id = stock.product_id
+          products
+          INNER JOIN stocks ON products.id = stocks.product_id
         WHERE
-          stock.stock > 0
+          stocks.stock > 0
         ORDER BY
-          product.item_code ASC
+          products.item_code ASC
     </select>
 
     <select id="findProductByItemCode" resultMap="productResultMap">
@@ -40,31 +40,31 @@
           <include refid="productColumns"></include>,
           <include refid="stockColumns"></include>
         FROM
-          product
-          INNER JOIN stock ON product.id = stock.product_id
+          products
+          INNER JOIN stocks ON products.id = stocks.product_id
         WHERE
-          product.item_code = #{itemCode}
+          products.item_code = #{itemCode}
     </select>
     
     <select id="findProductPic" resultMap="productPicResultMap">
-        SELECT pic.id, pic.pic, pic.create_date, pic.update_date, pic.version
+        SELECT images.id, images.pic, images.create_date, images.update_date, images.version
         FROM
-          product
-          INNER JOIN product_pic pic on product.id = pic.product_id
-        WHERE product.item_code = #{itemCode}
+          products
+          INNER JOIN product_images images on products.id = images.product_id
+        WHERE products.item_code = #{itemCode}
     </select>
 
     <select id="isExistStock" resultType="boolean" parameterType="jgs.bluemix.sample.entity.Stock">
         SELECT
           CASE count(1) WHEN 0 THEN 'false' ELSE 'true' END
         FROM
-          stock
+          stocks
         WHERE
           id = #{id}
     </select>
 
     <update id="versionConditionalStockUpdate" parameterType="jgs.bluemix.sample.entity.Stock" flushCache="true">
-        UPDATE stock
+        UPDATE stocks
         SET
           stock = #{stock},
           update_date = current_timestamp(),

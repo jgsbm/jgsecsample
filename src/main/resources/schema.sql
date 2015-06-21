@@ -1,5 +1,5 @@
---create customer table
-CREATE TABLE customer(
+--create customers table
+CREATE TABLE customers(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   customer_name VARCHAR(30) NOT NULL,
   address VARCHAR(255) NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE customer(
   version BIGINT NOT NULL
 );
 
---create creditcards
-CREATE TABLE creditcard(
+--create creditcards tables
+CREATE TABLE creditcards(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   encrypted_creditno VARCHAR(96) NOT NULL,
   customer_id BIGINT NOT NULL,
@@ -21,8 +21,8 @@ CREATE TABLE creditcard(
   version BIGINT NOT NULL
 );
 
---create product table
-CREATE TABLE product(
+--create products table
+CREATE TABLE products(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   item_code CHAR(10) NOT NULL UNIQUE,
   item_name VARCHAR(50),
@@ -33,8 +33,8 @@ CREATE TABLE product(
   version BIGINT NOT NULL
 );
 
---create product_pic table
-CREATE TABLE product_pic(
+--create product_images table
+CREATE TABLE product_images(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   pic BLOB NOT NULL,
   product_id BIGINT NOT NULL UNIQUE,
@@ -43,8 +43,8 @@ CREATE TABLE product_pic(
   version BIGINT NOT NULL
 );
 
---create stock
-CREATE TABLE stock(
+--create stocks table
+CREATE TABLE stocks(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   stock INT NOT NULL,
   product_id BIGINT NOT NULL UNIQUE,

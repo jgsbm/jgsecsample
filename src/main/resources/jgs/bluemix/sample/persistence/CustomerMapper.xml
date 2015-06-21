@@ -17,13 +17,13 @@
           update_date,
           version
         FROM
-          customer
+          customers
         WHERE
           email = #{email}
     </select>
 
     <insert id="insertCustomer" parameterType="jgs.bluemix.sample.entity.Customer" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO customer (
+        INSERT INTO customers (
           customer_name,
           address,
           tel,
@@ -45,7 +45,7 @@
     </insert>
 
     <insert id="insertCreditCard" parameterType="jgs.bluemix.sample.entity.CreditCard" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO creditcard (
+        INSERT INTO creditcards (
           encrypted_creditno,
           customer_id,
           create_date,
