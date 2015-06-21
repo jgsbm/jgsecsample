@@ -1,4 +1,4 @@
-package jgs.bluemix.sample.repository;
+package jgs.bluemix.sample.persistence;
 
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.entity.ProductPic;

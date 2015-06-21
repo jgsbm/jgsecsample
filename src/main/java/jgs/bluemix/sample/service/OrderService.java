@@ -3,7 +3,7 @@ package jgs.bluemix.sample.service;
 import jgs.bluemix.sample.entity.Product;
 import jgs.bluemix.sample.entity.Stock;
 import jgs.bluemix.sample.exception.OutOfStockException;
-import jgs.bluemix.sample.repository.ProductMapper;
+import jgs.bluemix.sample.repository.ProductRepository;
 import jgs.bluemix.sample.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,6 @@ public class OrderService {
     /* 本来は共通サービスを利用するべき.詳細はクラス側のJavaDoc参照 */
     @Autowired
     ProductService productService;
-
-    @Autowired
-    ProductMapper productMapper;
 
     @Autowired
     StockRepository stockRepository;

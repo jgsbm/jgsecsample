@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.repository;
 
 import jgs.bluemix.sample.entity.Stock;
+import jgs.bluemix.sample.persistence.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -8,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 在庫関連の操作を提供するRepositoryです.
- * <p>
- * TODO ServiceからRepositoryを使う場合とMapperを使う場合が混在してるから整理する（全てのServiceでRepository経由でMapperを呼び出す)
  *
  * @author ryozo
  */

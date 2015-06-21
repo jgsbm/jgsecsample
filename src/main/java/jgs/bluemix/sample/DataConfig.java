@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  *
  * @author ryozo
  */
-@MapperScan("jgs.bluemix.sample.repository")
+@MapperScan("jgs.bluemix.sample.persistence")
 @Configuration
 public class DataConfig {
 
