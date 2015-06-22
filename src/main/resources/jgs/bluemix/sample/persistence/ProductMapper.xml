@@ -9,16 +9,16 @@
         products.item_name as product_item_name,
         products.price as product_price,
         products.detail as product_detail,
-        products.create_date as product_create_date,
-        products.update_date as product_update_date,
+        products.created_at as product_created_at,
+        products.updated_at as product_updated_at,
         products.version as product_version
     </sql>
     <sql id="stockColumns">
         stocks.id as stock_id,
         stocks.stock as stock_stock,
         stocks.product_id as stock_product_id,
-        stocks.create_date as stock_create_date,
-        stocks.update_date as stock_update_date,
+        stocks.created_at as stock_created_at,
+        stocks.updated_at as stock_updated_at,
         stocks.version as stock_version
     </sql>
 
@@ -47,7 +47,7 @@
     </select>
     
     <select id="findProductPic" resultMap="productPicResultMap">
-        SELECT images.id, images.pic, images.create_date, images.update_date, images.version
+        SELECT images.id, images.pic, images.created_at, images.updated_at, images.version
         FROM
           products
           INNER JOIN product_images images on products.id = images.product_id
@@ -67,7 +67,7 @@
         UPDATE stocks
         SET
           stock = #{stock},
-          update_date = current_timestamp(),
+          updated_at = current_timestamp(),
           version = version + 1
         WHERE
           id = #{id}
@@ -80,8 +80,8 @@
         <result property="itemName" column="product_item_name" />
         <result property="price" column="product_price" />
         <result property="detail" column="product_detail" />
-        <result property="createDate" column="product_create_date" />
-        <result property="updateDate" column="product_update_date" />
+        <result property="createdAt" column="product_created_at" />
+        <result property="updatedAt" column="product_updated_at" />
         <result property="version" column="product_version" />
         <association property="stock" resultMap="stockResultMap" />
     </resultMap>
@@ -89,16 +89,16 @@
     <resultMap id="productPicResultMap" type="jgs.bluemix.sample.entity.ProductPic">
         <id property="id" column="id" />
         <result property="pic" column="pic" />
-        <result property="createDate" column="create_date" />
-        <result property="updateDate" column="update_date" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
         <result property="version" column="version" />
     </resultMap>
 
     <resultMap id="stockResultMap" type="jgs.bluemix.sample.entity.Stock">
         <id property="id" column="stock_id" />
         <result property="stock" column="stock_stock" />
-        <result property="createDate" column="stock_create_date" />
-        <result property="updateDate" column="stock_update_date" />
+        <result property="createdAt" column="stock_created_at" />
+        <result property="updatedAt" column="stock_updated_at" />
         <result property="version" column="stock_version" />
         <association property="product" resultMap="productResultMap" />
     </resultMap>
