@@ -13,8 +13,8 @@
           tel,
           hashed_password,
           email,
-          create_date,
-          update_date,
+          created_at,
+          updated_at,
           version
         FROM
           customers
@@ -29,8 +29,8 @@
           tel,
           hashed_password,
           email,
-          create_date,
-          update_date,
+          created_at,
+          updated_at,
           version)
         VALUES (
           #{customerName},
@@ -48,8 +48,8 @@
         INSERT INTO creditcards (
           encrypted_creditno,
           customer_id,
-          create_date,
-          update_date,
+          created_at,
+          updated_at,
           version)
         VALUES (
           #{encryptedCreditno},

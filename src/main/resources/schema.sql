@@ -6,8 +6,8 @@ CREATE TABLE customers(
   tel VARCHAR(11) NOT NULL,
   hashed_password VARCHAR(128) NOT NULL,
   email VARCHAR(256) NOT NULL UNIQUE,
-  create_date TIMESTAMP NOT NULL,
-  update_date TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
   version BIGINT NOT NULL
 );
 
@@ -16,8 +16,8 @@ CREATE TABLE creditcards(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   encrypted_creditno VARCHAR(96) NOT NULL,
   customer_id BIGINT NOT NULL,
-  create_date TIMESTAMP NOT NULL,
-  update_date TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
   version BIGINT NOT NULL
 );
 
@@ -28,8 +28,8 @@ CREATE TABLE products(
   item_name VARCHAR(50),
   price DECIMAL(6, 2),
   detail VARCHAR(200),
-  create_date TIMESTAMP NOT NULL,
-  update_date TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
   version BIGINT NOT NULL
 );
 
@@ -38,8 +38,8 @@ CREATE TABLE product_images(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   pic BLOB NOT NULL,
   product_id BIGINT NOT NULL UNIQUE,
-  create_date TIMESTAMP NOT NULL,
-  update_date TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
   version BIGINT NOT NULL
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE stocks(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   stock INT NOT NULL,
   product_id BIGINT NOT NULL UNIQUE,
-  create_date TIMESTAMP NOT NULL,
-  update_date TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
   version BIGINT NOT NULL
 );
