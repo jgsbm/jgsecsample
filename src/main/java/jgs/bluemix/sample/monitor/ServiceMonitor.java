@@ -1,6 +1,9 @@
 package jgs.bluemix.sample.monitor;
 
+import jgs.bluemix.sample.exception.BusinessException;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -40,6 +43,23 @@ public class ServiceMonitor {
         );
 
         return result;
+    }
+
+    /**
+     * Service層で発生した{@link BusinessException}に関する情報を出力します.
+     * BusinessExceptionはController層でcatchされ、例外処理が行われるため、
+     * Controller層よりも外側ではログ出力できません.
+     * そのため、Service層の呼び出し後のタイミングでログ出力を行います.
+     */
+    @AfterThrowing(value = "execution(* jgs..service.*Service.*(..))", throwing = "ex")
+    public void throwingBusinessException(JoinPoint point, BusinessException ex) {
+        MethodSignature signature = MethodSignature.class.cast(point.getSignature());
+        logger.warn(
+                "throwing BusinessException in {}#{}({})",
+                signature.getDeclaringType(),
+                signature.getMethod().getName(),
+                point.getArgs(),
+                ex);
     }
 
 }
