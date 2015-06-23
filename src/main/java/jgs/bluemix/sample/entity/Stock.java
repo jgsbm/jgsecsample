@@ -12,7 +12,7 @@ import java.sql.Blob;
  */
 @Setter
 @Getter
-@ToString(exclude = "product")
+@ToString(callSuper = true, exclude = "product")
 public class Stock extends BaseEntity {
     private Integer stock;
     private Product product;
