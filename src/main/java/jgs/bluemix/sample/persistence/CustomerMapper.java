@@ -28,4 +28,22 @@ public interface CustomerMapper {
      * @param creditCard 追加対象クレジットカード情報
      */
     void insertCreditCard(CreditCard creditCard);
+    
+    /**
+     * 引数に指定されたユーザを更新します.
+     * @param customer 更新対象ユーザ
+     */
+    void updateCustomer(Customer customer);
+    
+    /**
+     * 引数に指定されたクレジットカードを更新します.
+     * @param creditCard 更新対象クレジットカード情報
+     */
+    void updateCreditCard(CreditCard creditCard);
+    
+    /**
+     * 引数に指定されたユーザのパスワードを更新します.
+     * @param customer 更新対象ユーザ
+     */
+    void updatePassword(Customer customer);
 }

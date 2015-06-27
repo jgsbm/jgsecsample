@@ -1,95 +1,107 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+    xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout/baseLayout :: htmlhead"
-	th:with="title='Member'"></head>
+    th:with="title='Member'"></head>
 
 <body>
-	<div th:include="layout/baseLayout :: navbar"></div>
+    <script type="text/javascript">
+        function confirmUpdate() {
+            if (confirm('更新しますか？')) {
+                document.update.submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <div th:include="layout/baseLayout :: navbar"></div>
 
-	<div class="contents">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<h2 class="page-header">JGS Shopping Member</h2>
-				</div>
-			</div>
-			<div class="panel panel-primary">
-				<div class="panel-heading">お客様情報</div>
-				<div class="panel-body">
+    <div class="contents">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">JGS Shopping Member</h2>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">お客様情報</div>
+                <div class="panel-body">
+                <div th:include="layout/baseLayout :: messageArea"></div>
 
-					<form method="POST" action="/index" th:action="@{/index}">
-						<div class="form-horizontal">
-							<div class="form-group">
-								<div class="col-xs-3 text-right">
-									<label for="customer_name">お名前</label>
-								</div>
-								<div class="col-xs-8">
-									<input type="text" class="form-control" id="customer_name"
-										name="customer_name" placeholder="お名前を入力してください" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-xs-3 text-right">
-									<label for="address">住所</label>
-								</div>
-								<div class="col-xs-8">
-									<input type="text" class="form-control" id="address"
-										name="address" placeholder="住所を入力してください" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-xs-3 text-right">
-									<label for="tel">電話番号</label>
-								</div>
-								<div class="col-xs-8">
-									<input class="form-control" id="tel" name="tel"
-										placeholder="電話番号を入力してください" />
-								</div>
-							</div>
-							<div class="form-group">
+                    <form method="POST" action="/updateMember" th:action="@{/updateMember}" th:object="${memberForm}" name="update">
+                        <div class="form-horizontal">
+                            <div class="form-group" th:classappend="${#fields.hasErrors('customerName')}? 'has-error has-feedback'">
+                                <div class="col-xs-3 text-right">
+                                    <label for="customerName">お名前</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="customerName"
+                                        name="customerName" placeholder="お名前を入力してください" th:attr="value=${member.customerName}"/>
+                                <span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="help-block">error!</span>
+                                </div>
+                            </div>
+                            <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error has-feedback'">
+                                <div class="col-xs-3 text-right">
+                                    <label for="address">住所</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="address"
+                                        name="address" placeholder="住所を入力してください" th:attr="value=${member.address}"/>
+                                    <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="help-block">error!</span>
+                                </div>
+                            </div>
+                            <div class="form-group" th:classappend="${#fields.hasErrors('tel')}? 'has-error has-feedback'">
+                                <div class="col-xs-3 text-right">
+                                    <label for="tel">電話番号</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input class="form-control" id="tel" name="tel"
+                                        placeholder="電話番号を入力してください" th:attr="value=${member.tel}"/>
+                                    <span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}" class="help-block">error!</span>
+                                </div>
+                            </div>
+<!--                             <div class="form-group" th:classappend="${#fields.hasErrors('creditno')}? 'has-error has-feedback'">
                                 <div class="col-xs-3 text-right">
                                     <label for="creditno">クレジットカード番号</label>
                                 </div>
                                 <div class="col-xs-8">
                                     <input class="form-control" id="creditno" name="creditno"
                                         placeholder="クレジットカード番号を入力してください" />
+                                    <p class="help-block">クレジットカード番号を変更する場合は入力してください。</p>
+                                    <span th:if="${#fields.hasErrors('creditno')}" th:errors="*{creditno}" class="help-block">error!</span>
+                                </div>
+                            </div> -->
+                            <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error has-feedback'">
+                                <div class="col-xs-3 text-right">
+                                    <label for="email">メールアドレス</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input class="form-control" id="email" name="email"
+                                        placeholder="メールアドレスを入力してください" th:attr="value=${member.email}"/>
+                                    <p class="help-block">メールアドレスがログインIDになります。</p>
+                                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help-block">error!</span>
                                 </div>
                             </div>
-							<div class="form-group">
-								<div class="col-xs-3 text-right">
-									<label for="email">メールアドレス</label>
-								</div>
-								<div class="col-xs-8">
-									<input class="form-control" id="email" name="email"
-										placeholder="メールアドレスを入力してください" />
-									<p class="help-block">メールアドレスがログインIDになります。</p>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-xs-offset-3 col-xs-8">
-									<button type="submit" class="btn btn-primary">更新</button>
-									<button type="button" class="btn btn-default">キャンセル</button>
-								</div>
-							</div>
-						</div>
-					</form>
+                            <div class="form-group">
+                                <div class="col-xs-offset-3 col-xs-8">
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="confirmUpdate()">更新する</button>
+                                    <a href="/menu" th:href="@{/menu}" class="btn btn-default">キャンセル</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <br /> <br />
 
+                    <div th:include="layout/baseLayout :: footer"></div>
+                </div>
+            </div>
 
-
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-lg-4">
-					<br /> <br />
-
-					<div th:include="layout/baseLayout :: footer"></div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+        </div>
+    </div>
 </body>
 </html>
