@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Customer情報を表現するEntityです.
@@ -8,6 +9,7 @@ import lombok.Data;
  * @author ryozo
  */
 @Data
+@ToString(callSuper = true)
 public class Customer extends BaseEntity {
     private static final long serialVersionUID = 7927199781832752718L;
     private String customerName;

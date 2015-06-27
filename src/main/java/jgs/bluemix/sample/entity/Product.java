@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
  * @author ryozo
  */
 @Data
+@ToString(callSuper = true)
 public class Product extends BaseEntity {
     private String itemCode;
     private String itemName;

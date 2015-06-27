@@ -32,7 +32,6 @@ public class CustomerService {
             customerRepository.insertCreditCard(customer.getCreditCard());
         } catch (DuplicateKeyException e) {
             // UserIDの重複(既に登録済のユーザ)
-            // TODO AOPによるログ出力
             throw new AlreadyUserRegistedException(e);
         }
         return customer;

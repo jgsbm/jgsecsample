@@ -1,6 +1,7 @@
 package jgs.bluemix.sample.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
