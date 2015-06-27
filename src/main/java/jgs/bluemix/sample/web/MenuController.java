@@ -29,7 +29,7 @@ public class MenuController {
     MessageSource messageSource;
 
     @RequestMapping("/menu")
-    public String menu(@RequestParam(value = "orderedCode", required = false) String orderedCode,
+    public String menu(@RequestParam(value = "orderedCode", required = false) String orderedCode,@RequestParam(value = "messageCode", required = false) String messageCode,
                        Model model, Locale locale) {
         List<Product> products = productService.findAllStockProducts();
         model.addAttribute("products", products);
@@ -37,6 +37,11 @@ public class MenuController {
             model.addAttribute("hasInfoMessage", Boolean.TRUE);
             model.addAttribute("infoMessage", messageSource.getMessage(
                     BusinessMessageCodeEnum.INFO_ORDER_SUCCESS.getCode(), new String[]{orderedCode}, locale));
+        }
+        if (StringUtils.hasLength(messageCode)) {
+            model.addAttribute("hasInfoMessage", Boolean.TRUE);
+            model.addAttribute("infoMessage", messageSource.getMessage(
+        	    messageCode, new String[]{}, locale));
         }
         return "menu";
     }

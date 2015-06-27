@@ -11,19 +11,9 @@ public class HomeController {
         return "index";
     }
     
-    @RequestMapping("/member")
-    public String member() {
-        return "member";
-    }
-    
     @RequestMapping("/customer")
     public String customer() {
         return "customer";
-    }
-
-    @RequestMapping("/password")
-    public String password() {
-        return "password";
     }
 
 }

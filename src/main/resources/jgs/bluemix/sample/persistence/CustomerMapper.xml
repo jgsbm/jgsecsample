@@ -59,5 +59,42 @@
           1
         )
     </insert>
+    
+    <update id="updateCustomer" parameterType="jgs.bluemix.sample.entity.Customer" flushCache="true">
+        UPDATE customer 
+        SET
+          customer_name = #{customerName},
+          address = #{address},
+          tel = #{tel},
+          email = #{email},
+          update_date = current_timestamp(),
+          version = version + 1
+        WHERE
+          id = #{id}
+          AND version = #{version}
+    </update>
+    
+    <update id="updateCreditCard" parameterType="jgs.bluemix.sample.entity.CreditCard" flushCache="true">
+        UPDATE creditcard
+        SET
+          encrypted_creditno = #{encryptedCreditno},
+          customer_id = #{customer.id},
+          update_date = current_timestamp(),
+          version = version + 1
+        WHERE
+          id = #{id}
+          AND version = #{version}
+    </update>
+    
+    <update id="updatePassword" parameterType="jgs.bluemix.sample.entity.Customer" flushCache="true">
+        UPDATE customer 
+        SET
+          hashed_password = #{hashedPassword},
+          update_date = current_timestamp(),
+          version = version + 1
+        WHERE
+          id = #{id}
+          AND version = #{version}
+    </update>
 
 </mapper>
