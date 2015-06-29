@@ -34,19 +34,19 @@ public class OrderService {
 
     /**
      * 商品の注文操作を実行します.
-     * @param itemCode 注文対象の商品
+     * @param productCode 注文対象の商品
      * @param orderQuantity 注文個数
      */
     @Transactional
-    public void order(String itemCode, Integer orderQuantity) {
+    public void order(String productCode, Integer orderQuantity) {
         // TODO 注文履歴の作成
-        Product buyProduct = productService.findStockProductByItemCode(itemCode);
+        Product buyProduct = productService.findStockProductByProductCode(productCode);
         Stock stock = buyProduct.getStock();
 
         if (stock.getStock() < orderQuantity) {
             // 購入数だけの在庫が存在しない場合
             // TODO 専用メッセージの設定（購入個数を減らせば購入できる可能性があることを示す）
-            throw new OutOfStockException(itemCode);
+            throw new OutOfStockException(productCode);
         }
 
         Integer stockAfterOrder = stock.getStock() - orderQuantity;

@@ -30,30 +30,30 @@ public class ProductService {
     }
 
     /**
-     * 引数に指定されたItemCodeを保持する在庫品を検索します.
+     * 引数に指定されたProductCmodeを保持する在庫品を検索します.
      * 対象商品の在庫が存在しない場合{@link OutOfStockException}をthrowします.
-     * @param itemCode 検索対象のItemCode
+     * @param productCode productCode
      * @return 検索結果
      */
-    public Product findStockProductByItemCode(String itemCode) {
-        Product product = productRepository.findProductByItemCode(itemCode);
+    public Product findStockProductByProductCode(String productCode) {
+        Product product = productRepository.findProductByProductCode(productCode);
         if (product == null) {
             throw new ProductNotExistsException();
         }
         if (!isStock(product)) {
-            throw new OutOfStockException(itemCode);
+            throw new OutOfStockException(productCode);
         }
 
         return product;
     }
 
     /**
-     * 引数に指定されたItemCodを保持する商品を検索します(在庫品であるか在庫切れ品であるかを判定しません).
-     * @param itemCode 検索対象のItemCode
+     * 引数に指定されたProductCodeを保持する商品を検索します(在庫品であるか在庫切れ品であるかを判定しません).
+     * @param productCode 検索対象のproductCode
      * @return 検索結果
      */
-    public Product findProductByItemCode(String itemCode) {
-        Product product = productRepository.findProductByItemCode(itemCode);
+    public Product findProductByProductCode(String productCode) {
+        Product product = productRepository.findProductByProductCode(productCode);
         if (product == null) {
             throw new ProductNotExistsException();
         }
@@ -64,8 +64,8 @@ public class ProductService {
      * 指定した商品コードを保持する商品の画像を保持する{@link ProductPic}インスタンスを返却します.
      * @return 商品画像を保持するProductPicインスタンス
      */
-    public ProductPic findProductPic(String itemCode) {
-        return productRepository.findProductPic(itemCode);
+    public ProductPic findProductPic(String productCode) {
+        return productRepository.findProductPic(productCode);
     }
 
     /**

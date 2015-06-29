@@ -30,12 +30,12 @@
 						</tr>
 					</thead>
 					<tr th:each="product : ${products}">
-						<td th:text="${product.itemCode}">商品ID1</td>
+						<td th:text="${product.productCode}">商品ID1</td>
 						<td>
-							<img th:attr="src=@{/resource/product/{itemCode}.jpg(itemCode=${product.itemCode})}" th:width="40px" th:height="40px" alt="" /></td>
-						<td th:text="${product.itemName}">商品名1</td>
+							<img th:attr="src=@{/resource/product/{productCode}.jpg(productCode=${product.productCode})}" th:width="40px" th:height="40px" alt="" /></td>
+						<td th:text="${product.productName}">商品名1</td>
 						<td th:text="${product.detail}">詳細1</td>
-						<td><a th:href="@{detail(itemCode=${product.itemCode})}" class="btn btn-primary btn-lg"><span
+						<td><a th:href="@{detail(productCode=${product.productCode})}" class="btn btn-primary btn-lg"><span
 								class="glyphicon glyphicon-zoom-in"></span>詳細</a></td>
 					</tr>
 					<tr th:remove="all">

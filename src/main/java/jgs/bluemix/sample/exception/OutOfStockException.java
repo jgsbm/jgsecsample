@@ -16,14 +16,14 @@ public class OutOfStockException extends BusinessException {
     private static final long serialVersionUID = -3193112286387806500L;
 
     @Getter
-    private String itemCode;
+    private String productCode;
 
-    public OutOfStockException(String itemCode) {
-        this(itemCode, null);
+    public OutOfStockException(String productCode) {
+        this(productCode, null);
     }
 
-    public OutOfStockException(String itemCode, Throwable cause) {
+    public OutOfStockException(String productCode, Throwable cause) {
         super(BusinessMessageCodeEnum.ERROR_OUTOFSTOCK, cause);
-        this.itemCode = itemCode;
+        this.productCode = productCode;
     }
 }
