@@ -30,23 +30,23 @@ public class ProductRepository {
     }
 
     /**
-     * 指定されたItemCodeを保持する商品を検索します.
+     * 指定されたProductCodeを保持する商品を検索します.
      *
-     * @param itemCode 検索条件とするItemCode
+     * @param productCode 検索条件とするProductCode
      * @return 検索結果
      */
-    public Product findProductByItemCode(String itemCode) {
-        return productMapper.findProductByItemCode(itemCode);
+    public Product findProductByProductCode(String productCode) {
+        return productMapper.findProductByProductCode(productCode);
     }
 
     /**
-     * 指定された商品コード(ItemCode)を保持する商品の画像(PIC)を保持する{@link ProductPic}インスタンスを返却します.
+     * 指定された商品コード(ProductCode)を保持する商品の画像(PIC)を保持する{@link ProductPic}インスタンスを返却します.
      *
-     * @param itemCode 検索対象商品の商品コード
+     * @param productCode 検索対象商品の商品コード
      * @return 商品画像を保持するProductPicインスタンス
      */
-    public ProductPic findProductPic(String itemCode) {
-        return productMapper.findProductPic(itemCode);
+    public ProductPic findProductPic(String productCode) {
+        return productMapper.findProductPic(productCode);
     }
 
 }

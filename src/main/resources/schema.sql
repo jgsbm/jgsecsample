@@ -24,8 +24,8 @@ CREATE TABLE creditcards(
 --create products table
 CREATE TABLE products(
   id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  item_code CHAR(10) NOT NULL UNIQUE,
-  item_name VARCHAR(50),
+  product_code CHAR(10) NOT NULL UNIQUE,
+  product_name VARCHAR(50),
   price DECIMAL(6, 2),
   detail VARCHAR(200),
   created_at TIMESTAMP NOT NULL,

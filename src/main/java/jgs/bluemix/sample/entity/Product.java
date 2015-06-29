@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @Data
 @ToString(callSuper = true)
 public class Product extends BaseEntity {
-    private String itemCode;
-    private String itemName;
+    private String productCode;
+    private String productName;
     private BigDecimal price;
     private String detail;
     private ProductPic productPic;

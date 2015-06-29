@@ -30,14 +30,14 @@ public class ResourceController {
     /**
      * URLに指定された商品画像(JPG)を取得します.
      *
-     * @param itemCode 画像取得対象商品のコード(URLより取得)
+     * @param productCode 画像取得対象商品のコード(URLより取得)
      * @return JPG画像
      * @throws IOException
      */
-    @RequestMapping("product/{itemCode}.jpg")
+    @RequestMapping("product/{productCode}.jpg")
     @ResponseBody
-    public ResponseEntity<byte[]> jpgProductResource(@PathVariable String itemCode) throws IOException {
-        ProductPic pic = productService.findProductPic(itemCode);
+    public ResponseEntity<byte[]> jpgProductResource(@PathVariable String productCode) throws IOException {
+        ProductPic pic = productService.findProductPic(productCode);
         if (pic == null || isEmptyResouce(pic.getPic())) {
             throw new ResourceNotFoundException();
         }

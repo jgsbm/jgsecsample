@@ -5,8 +5,8 @@
 
     <sql id="productColumns">
         products.id as product_id,
-        products.item_code as product_item_code,
-        products.item_name as product_item_name,
+        products.product_code as product_product_code,
+        products.product_name as product_product_name,
         products.price as product_price,
         products.detail as product_detail,
         products.created_at as product_created_at,
@@ -32,10 +32,10 @@
         WHERE
           stocks.stock > 0
         ORDER BY
-          products.item_code ASC
+          products.product_code ASC
     </select>
 
-    <select id="findProductByItemCode" resultMap="productResultMap">
+    <select id="findProductByProductCode" resultMap="productResultMap">
         SELECT
           <include refid="productColumns"></include>,
           <include refid="stockColumns"></include>
@@ -43,7 +43,7 @@
           products
           INNER JOIN stocks ON products.id = stocks.product_id
         WHERE
-          products.item_code = #{itemCode}
+          products.product_code = #{productCode}
     </select>
     
     <select id="findProductPic" resultMap="productPicResultMap">
@@ -51,7 +51,7 @@
         FROM
           products
           INNER JOIN product_images images on products.id = images.product_id
-        WHERE products.item_code = #{itemCode}
+        WHERE products.product_code = #{productCode}
     </select>
 
     <select id="isExistStock" resultType="boolean" parameterType="jgs.bluemix.sample.entity.Stock">
@@ -76,8 +76,8 @@
 
     <resultMap id="productResultMap" type="jgs.bluemix.sample.entity.Product">
         <id property="id" column="product_id" />
-        <result property="itemCode" column="product_item_code" />
-        <result property="itemName" column="product_item_name" />
+        <result property="productCode" column="product_product_code" />
+        <result property="productName" column="product_product_name" />
         <result property="price" column="product_price" />
         <result property="detail" column="product_detail" />
         <result property="createdAt" column="product_created_at" />

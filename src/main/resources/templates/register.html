@@ -37,9 +37,9 @@
 						<table class="table table-striped table-hover">
 							<tbody>
 								<tr>
-									<td class="col-xs-2"><span th:text="*{itemCode}">商品ID1</span></td>
-									<td class="col-xs-2"><img src="../img/ITEM000001.jpg" width="150" height="150" th:attr="src=@{/resource/product/{itemCode}.jpg(itemCode=*{itemCode})}" th:width="40px" th:height="40px" alt="" /></td>
-									<td class="col-xs-2"><span th:text="*{itemName}">商品名1</span></td>
+									<td class="col-xs-2"><span th:text="*{productCode}">商品ID1</span></td>
+									<td class="col-xs-2"><img src="../img/ITEM000001.jpg" width="150" height="150" th:attr="src=@{/resource/product/{productCode}.jpg(productCode=*{productCode})}" th:width="40px" th:height="40px" alt="" /></td>
+									<td class="col-xs-2"><span th:text="*{productName}">商品名1</span></td>
 									<td class="col-xs-3"><span th:text="*{detail}">詳細1</span></td>
 									<td class="col-xs-3">個数：<input type="text" id="order_quantity" th:field="${orderForm.quantity}" name="customer_name"/></td>
 								</tr>
@@ -55,7 +55,7 @@
 						</div>
 						<br />
 						<div class="row text-center">
-							<input type="hidden" name="itemCode" th:value="*{itemCode}"/>
+							<input type="hidden" name="productCode" th:value="*{productCode}"/>
 							<button type="button" class="btn btn-primary"
 								onclick="confirmRegister()">購入する</button>
 							<a href="/menu" th:href="@{/menu}" class="btn btn-default">キャンセル</a>
